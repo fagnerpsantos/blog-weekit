@@ -1,0 +1,39 @@
+{% extends 'blog/base.html' %}
+
+{% block tituloheader %}
+{{post.titulo}}
+{% endblock tituloheader %}
+
+{% block descricaoheader %}
+{{post.descricao}}
+{% endblock descricaoheader %}
+
+{% block conteudo %}
+<article>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <p>{{post.conteudo}}</p>
+          </div>
+        </div>
+          <hr>
+          <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+              <h2>Comentários</h2>
+            {% for comentario in comentarios %}
+                <p>{{comentario.conteudo}}</p>
+            {% endfor %}
+          </div>
+          </div>
+      </div>
+    </article>
+
+<hr>
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
+        {{form_comentario.as_p}}
+        <button class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+{% endblock conteudo %}
